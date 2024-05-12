@@ -7,71 +7,129 @@
     <title>Schüler</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
     <script src="./script.js"></script>
+    <script src="./modal.js"></script>
+    <script>
+        let currentRow = null;
+    </script>
 
     <style>
         .correct {
             background-color: lightgreen;
             color: black;
         }
+
+        .subjects {
+            cursor: pointer;
+        }
+
+        #filterForm {
+            display: grid;
+            grid-template-areas: "label select input button";
+            gap: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
-    <h2 id="result">Korrete Punkte</h2>
-    <form id="database">
-        <table class="table" id="normalization">
-            <thead>
-                <tr>
-                    <th>
-                        <label>
-                            SchülerID
-                            <input type="checkbox" name="userID" />
-                        </label>
-                    </th>
-                    <th data-column="name">
-                        <label>
-                            Name
-                            <input type="checkbox" name="name" />
-                        </label>
-                    </th>
-                    <th>
-                        <label>
-                            Lieblingsfächer
-                            <input type="checkbox" name="subjects" />
-                        </label>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td data-column="name">Max Mustermann</td>
-                    <td>Mathematik, Physik</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td data-column="name">Lisa Müller</td>
-                    <td>Deutsch, Englisch</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td data-column="name">Anna Schmidt</td>
-                    <td>Geschichte</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td data-column="name">Tom Schulz</td>
-                    <td>Mathematik, Sport</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td data-column="name">Julia Wagner</td>
-                    <td>Biologie</td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
-    <button onclick="checkResult()">Überprüfen</button>
+    <main class="container">
+        <h2 id="result">Korrekte Punkte</h2>
+        <div class="grid">
+            <form id="filterForm">
+                <select id="columnSelect">
+                    <option value="userID">SchülerID</option>
+                    <option value="name">Name</option>
+                    <option value="subjects">Lieblingsfächer</option>
+                </select>
+                <input type="text" id="searchText">
+                <button type="button" onclick="filterTable()">Filtern</button>
+                <button type="button" class="secondary" onclick="resetFilterTable()">Reset</button>
+            </form>
+        </div>
+
+        <form id="database">
+            <table class="table" id="normalization">
+                <thead>
+                    <tr>
+                        <th data-column="userID">
+                            <label>
+                                SchülerID
+                                <input type="checkbox" name="userID" />
+                            </label>
+                        </th>
+                        <th data-column="name">
+                            <label>
+                                Name
+                                <input type="checkbox" name="name" />
+                            </label>
+                        </th>
+                        <th data-column="subjects">
+                            <label>
+                                Lieblingsfächer
+                                <input type="checkbox" name="subjects" />
+                            </label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-column="userID">1</td>
+                        <td data-column="name">Max Mustermann</td>
+                        <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Mathematik,
+                            Physik</td>
+                    </tr>
+                    <tr>
+                        <td data-column="userID">2</td>
+                        <td data-column="name">Lisa Müller</td>
+                        <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Deutsch,
+                            Englisch</td>
+                    </tr>
+                    <tr>
+                        <td data-column="userID">3</td>
+                        <td data-column="name">Anna Schmidt</td>
+                        <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Geschichte</td>
+                    </tr>
+                    <tr>
+                        <td data-column="userID">4</td>
+                        <td data-column="name">Tom Schulz</td>
+                        <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Mathematik,
+                            Sport</td>
+                    </tr>
+                    <tr>
+                        <td data-column="userID">5</td>
+                        <td data-column="name">Julia Wagner</td>
+                        <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Biologie</td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <button onclick="checkResult()">Überprüfen</button>
+    </main>
+
+    <!-- Modal example -->
+    <dialog id="modal-example">
+        <article>
+            <header>
+                <button aria-label="Close" rel="prev" onclick="toggleModal('modal-example')"></button>
+                <h3>Zeile aufteilen</h3>
+            </header>
+            <p>
+                Soll die folgende Zeile aufgeteilt werden?
+            </p>
+            <footer>
+                <button role="button" class="secondary" onclick="toggleModal('modal-example')">
+                    Abbrechen
+                </button>
+                <button autofocus onclick="splitSubjects()">
+                    Bestätigen
+                </button>
+            </footer>
+        </article>
+    </dialog>
+    <!-- ./ Modal example -->
 </body>
 
 </html>
