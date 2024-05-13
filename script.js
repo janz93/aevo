@@ -13,7 +13,7 @@ function checkResult() {
 
     let result = document.getElementById("result");
     userAnswer = name + singleSubjects;
-    result.innerText = `${userAnswer} / 4 sind korret`;
+    result.innerHTML = `${userAnswer} / 2 Probleme gelöst`;
 }
 
 function triggerSplitSubjects(element) {
