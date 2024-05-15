@@ -31,6 +31,12 @@
         .hidden {
             display: none;
         }
+
+        em {
+            font-style: normal;
+            border-bottom: none !important;
+            cursor: pointer !important;
+        }
     </style>
 </head>
 
@@ -55,21 +61,27 @@
                 <thead>
                     <tr>
                         <th data-column="userID">
-                            <label title="Aufspalten">
-                                SchülerID
-                                <input type="checkbox" name="userID" />
+                            <label>
+                                <em data-tooltip="Aufspalten?">
+                                    SchülerID
+                                    <input type="checkbox" name="userID" />
+                                </em>
                             </label>
                         </th>
                         <th data-column="name">
-                            <label title="Aufspalten">
-                                Name
-                                <input type="checkbox" name="name" />
+                            <label>
+                                <em data-tooltip="Aufspalten?">
+                                    Name
+                                    <input type="checkbox" name="name" />
+                                </em>
                             </label>
                         </th>
                         <th data-column="subjects">
-                            <label title="Aufspalten">
-                                Lieblingsfächer
-                                <input type="checkbox" name="subjects" />
+                            <label>
+                                <em data-tooltip="Aufspalten?">
+                                    Lieblingsfächer
+                                    <input type="checkbox" name="subjects" />
+                                </em>
                             </label>
                         </th>
                     </tr>
