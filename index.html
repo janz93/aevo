@@ -36,7 +36,7 @@
 
 <body>
     <main class="container">
-        <h2 id="result">0 Probleme gelöst</h2>
+        <h2 id="result">0 Optimierung erkannt</h2>
         <div class="grid">
             <form id="filterForm">
                 <select id="columnSelect">
@@ -55,19 +55,19 @@
                 <thead>
                     <tr>
                         <th data-column="userID">
-                            <label>
+                            <label title="Aufspalten">
                                 SchülerID
                                 <input type="checkbox" name="userID" />
                             </label>
                         </th>
                         <th data-column="name">
-                            <label>
+                            <label title="Aufspalten">
                                 Name
                                 <input type="checkbox" name="name" />
                             </label>
                         </th>
                         <th data-column="subjects">
-                            <label>
+                            <label title="Aufspalten">
                                 Lieblingsfächer
                                 <input type="checkbox" name="subjects" />
                             </label>
@@ -83,7 +83,7 @@
                     <tr>
                         <td data-column="userID">2</td>
                         <td data-column="name">Lisa Müller</td>
-                        <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Deutsch</td>
+                        <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Biologie</td>
                     </tr>
                     <tr>
                         <td data-column="userID">3</td>

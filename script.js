@@ -13,7 +13,7 @@ function checkResult() {
 
     let result = document.getElementById("result");
     userAnswer = name + singleSubjects;
-    result.innerHTML = `${userAnswer} / 2 Probleme gelöst`;
+    result.innerHTML = `${userAnswer} / 2 Optimierung erkannt`;
 }
 
 function triggerSplitSubjects(element) {
