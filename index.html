@@ -42,7 +42,24 @@
 
 <body>
     <main class="container">
-        <h2 id="result">0 Optimierung erkannt</h2>
+        <article class="user-story">
+            <header>
+                <h2>Digitales Klassenbuch</h2>
+                <p>
+                    In Vorbereitung auf das neue Schuljahr, möchte die Physiklehrerin Frau Rade erfahren, wie viele
+                    Schüler:innen sich bereits für das
+                    Fach Physik begeistern.<br>
+                    Der Klassenlehrer Herr Loel möchte wissen, ob Vornamen dodppelt vorkommen.<br>
+                </p>
+                <p>Dies möchte beiden mithilfe der Klassenliste herausfinden.</p>
+            </header>
+            <h3>Akzeptanzkriterien:</h3>
+            <ol>
+                <li id="ac-subjects">Ich möchte wissen, welche Schüler <b>Physik</b> als Lieblingsfach angegeben haben
+                </li>
+                <li id="ac-names">Ich möchte wissen, welche Schüler mit dem Vornamen <b>Lisa</b> heißen</li>
+            </ol>
+        </article>
         <div class="grid">
             <form id="filterForm">
                 <select id="columnSelect">
@@ -64,15 +81,13 @@
                             <label>
                                 <em data-tooltip="Aufspalten?">
                                     SchülerID
-                                    <input type="checkbox" name="userID" />
                                 </em>
                             </label>
                         </th>
                         <th data-column="name">
-                            <label>
+                            <label onclick="splitColumnName()">
                                 <em data-tooltip="Aufspalten?">
                                     Name
-                                    <input type="checkbox" name="name" />
                                 </em>
                             </label>
                         </th>
@@ -80,7 +95,6 @@
                             <label>
                                 <em data-tooltip="Aufspalten?">
                                     Lieblingsfächer
-                                    <input type="checkbox" name="subjects" />
                                 </em>
                             </label>
                         </th>
@@ -89,24 +103,24 @@
                 <tbody>
                     <tr>
                         <td data-column="userID">1</td>
-                        <td data-column="name">Max Mustermann</td>
+                        <td data-column="name">Lisa Müller</td>
                         <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Physik</td>
                     </tr>
                     <tr>
                         <td data-column="userID">2</td>
-                        <td data-column="name">Lisa Müller</td>
+                        <td data-column="name">Max Mustermann</td>
                         <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Biologie</td>
                     </tr>
                     <tr>
                         <td data-column="userID">3</td>
-                        <td data-column="name">Anna Schmidt</td>
-                        <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Geschichte</td>
-                    </tr>
-                    <tr>
-                        <td data-column="userID">4</td>
                         <td data-column="name">Tom Schulz</td>
                         <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Sport, Physik
                         </td>
+                    </tr>
+                    <tr>
+                        <td data-column="userID">4</td>
+                        <td data-column="name">Lisa Schmidt</td>
+                        <td data-column="subjects" class="subjects" onclick="triggerSplitSubjects(this)">Geschichte</td>
                     </tr>
                 </tbody>
             </table>
@@ -115,17 +129,17 @@
     </main>
 
     <!-- Modal example -->
-    <dialog id="modal-example">
+    <dialog id="model-row-split">
         <article>
             <header>
-                <button aria-label="Close" rel="prev" onclick="toggleModal('modal-example')"></button>
+                <button aria-label="Close" rel="prev" onclick="toggleModal('model-row-split')"></button>
                 <h3>Zeile aufteilen</h3>
             </header>
             <p>
                 Soll die folgende Zeile aufgeteilt werden?
             </p>
             <footer>
-                <button role="button" class="secondary" onclick="toggleModal('modal-example')">
+                <button role="button" class="secondary" onclick="toggleModal('model-row-split')">
                     Abbrechen
                 </button>
                 <button autofocus onclick="splitSubjects()">
